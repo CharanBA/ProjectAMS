@@ -1,0 +1,144 @@
+{
+  "asset": [
+    {
+      "id": "1",
+      "name": "Laptop",
+      "category": "Electronics",
+      "description": "High-performance laptop",
+      "purchaseDate": "2022-01-01",
+      "status": "Active",
+      "assignedTo": "John Doe",
+      "component": [
+        {
+          "id": "c1",
+          "name": "Battery",
+          "category": "Power",
+          "manufacturer": "Dell",
+          "serialNumber": "BATT12345",
+          "warranty": "2024-01-01"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Projector",
+      "category": "Electronics",
+      "description": "HD Projector",
+      "purchaseDate": "2023-05-15",
+      "status": "Inactive",
+      "assignedTo": "Jane Smith",
+      "component": [
+        {
+          "id": "c2",
+          "name": "Lens",
+          "category": "Optical",
+          "manufacturer": "Sony",
+          "serialNumber": "LENS67890",
+          "warranty": "2025-05-15"
+        }
+      ]
+    },
+    {
+      "id": "3a9e",
+      "name": "Car",
+      "category": "Electric",
+      "description": "Smooth run",
+      "purchaseDate": "2025-02-22",
+      "status": "Active",
+      "assignedTo": "Akash",
+      "component": []
+    },
+    {
+      "id": "867c",
+      "name": "kjbkasc",
+      "category": "hjhjvjhsc",
+      "description": "jhbs",
+      "purchaseDate": "2025-03-21",
+      "status": "active",
+      "assignedTo": "hjvbsk",
+      "component": []
+    },
+    {
+      "id": "b5a5",
+      "name": "jhjshks",
+      "category": "ayfjfas",
+      "description": "sajyfs",
+      "purchaseDate": "2025-03-28",
+      "status": "active",
+      "assignedTo": "bishal",
+      "components": []
+    },
+    {
+      "id": "65a2",
+      "name": "kjqKVxa",
+      "category": "aXTHDDxah",
+      "description": "zGFCHa",
+      "purchaseDate": "2025-03-19",
+      "status": "active",
+      "assignedTo": "sMJHVhj",
+      "components": []
+    },
+    {
+      "id": "6ace",
+      "name": "hjjhws",
+      "category": "sjyfjys",
+      "description": "sctufuj",
+      "purchaseDate": "2025-03-12",
+      "status": "active",
+      "assignedTo": "dillip",
+      "components": []
+    },
+    {
+      "id": "5ecd",
+      "name": "gdaja",
+      "category": "dhjjgd",
+      "description": "dkjfjd",
+      "purchaseDate": "2025-03-05",
+      "status": "assign",
+      "assignedTo": "john",
+      "components": []
+    }
+  ],
+  "component": [
+    {
+      "id": "c1",
+      "name": "Battery",
+      "category": "Power",
+      "manufacturer": "Dell",
+      "serialNumber": "BATT12345",
+      "warranty": "2024-01-01"
+    },
+    {
+      "id": "c2",
+      "name": "Lens",
+      "category": "Optical",
+      "manufacturer": "Sony",
+      "serialNumber": "LENS67890",
+      "warranty": "2025-05-15"
+    },
+    {
+      "id": "3417",
+      "name": "Battery",
+      "category": "Power",
+      "manufacturer": "Samsung",
+      "serialNumber": "7686937",
+      "warranty": "2025-02-27"
+    },
+    {
+      "id": "da63",
+      "name": "vmxbnv",
+      "category": "mnbx",
+      "manufacturer": "1gi23e3bn",
+      "serialNumber": "nbjhvjh",
+      "warranty": "2025-03-13"
+    },
+    {
+      "id": "13b5",
+      "name": "skggukad",
+      "category": "hhgjs",
+      "manufacturer": "j1763",
+      "serialNumber": "scafyj",
+      "warranty": "2025-03-12"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+.dashboard {
+  padding: 20px;
+  background: #f4f4f9;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: #444;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.asset-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.asset-table th,
+.asset-table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.asset-table th {
+  background-color: #555;
+  color: white;
+}
+
+.asset-table td {
+  background-color: #fff;
+}
+
+.toggle-button,
+.details-link,
+.add-asset-button-top {
+  padding: 5px 10px;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-button {
+  background-color: #007bff;
+}
+
+.details-link {
+  background-color: #28a745;
+}
+
+.add-asset-button-top {
+  background-color: #17a2b8;
+  position: absolute;
+  right: 10px;
+  top: -40px;
+}
+
+.add-asset-button-top:hover,
+.toggle-button:hover,
+.details-link:hover {
+  opacity: 0.8;
+}
+
+.expanded-row {
+  background-color: #f9f9f9;
+}
+
+.expanded-row ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  text-align: center;
+}
+
+.expanded-row li {
+  margin: 5px 0;
+  color: #555;
+}
+
+.add-asset-wrapper {
+  position: relative;
+  width: 100%;
+}

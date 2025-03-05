@@ -1,0 +1,48 @@
+.assign-component-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.assign-component-container h2 {
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.assign-component-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.assign-component-container select {
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background: #f9f9f9;
+}
+
+.assign-component-container button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.assign-component-container button:hover {
+  background: #0056b3;
+}
+
+.success-message {
+  color: #28a745;
+  margin-top: 10px;
+  font-weight: bold;
+}
