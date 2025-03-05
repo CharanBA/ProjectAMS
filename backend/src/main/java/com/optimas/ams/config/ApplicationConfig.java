@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @ApplicationPath("/api")
 public class ApplicationConfig extends ResourceConfig {
     public ApplicationConfig() {
-        packages("com.optimas.ams.controller"); 
+        packages("com.optimas.ams.controller");
+        register(CorsFilter.class);
     }
 }

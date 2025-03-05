@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './AddComponent.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { addComponent } from '../../api/componentApi';
 import { handleApiError } from '../../utils/helpers';
+import './AddComponent.css';
 
 const AddComponent = () => {
   const [name, setName] = useState('');
@@ -14,38 +14,29 @@ const AddComponent = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newComponent = {
-      name,
-      category,
-      manufacturer,
-      serialNumber,
-      warrantyEnd: warranty
-    };
+    const newComponent = { name, category, manufacturer, serialNumber, warrantyEnd: warranty };
+
+    try {
+      await addComponent(newComponent);
+      setSuccess(true);
+      setError('');
+
+      
+      setName('');
+      setCategory('');
+      setManufacturer('');
+      setSerialNumber('');
+      setWarranty('');
 
     
-    axios.post('http://localhost:8080/api/component', newComponent)
-      .then(() => {
-        setSuccess(true);
-        setError('');
-
-        
-        setName('');
-        setCategory('');
-        setManufacturer('');
-        setSerialNumber('');
-        setWarranty('');
-
-        
-        setTimeout(() => {
-          navigate('/dashboard');
-        }, 2000);
-      })
-      .catch(error => {
-        const message = handleApiError(error);
-        alert(message);
-      });
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 2000);
+    } catch (error) {
+      alert(handleApiError(error));
+    }
   };
 
   return (

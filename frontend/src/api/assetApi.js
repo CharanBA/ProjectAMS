@@ -1,19 +1,38 @@
-// import api from './index';
+import api from './index';
 
-// // Fetch all assets
-// export const getAssets = async () => {
-//   const response = await api.get('/asset');
-//   return response.data;
-// };
+export const getAllAssets = async () => {
+  try {
+    const response = await api.get('/api/asset/all');
+    return response.data.reverse();
+  } catch (error) {
+    throw error;
+  }
+};
 
-// // Add a new asset
-// export const addAsset = async (newAsset) => {
-//   const response = await api.post('/asset', newAsset);
-//   return response.data;
-// };
+export const addAsset = async (assetData) => {
+  try {
+    await api.post('/api/asset', assetData);
+  } catch (error) {
+    throw error;
+  }
+};
 
-// // Get details of a single asset by ID
-// export const getAssetDetails = async (id) => {
-//   const response = await api.get(`/asset/${id}`);
-//   return response.data;
-// };
+
+export const getAssetById = async (id) => {
+  try {
+    const response = await api.get(`/api/asset?id=${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const assignComponentToAsset = async (assetId, componentId) => {
+    try {
+      const response = await api.post(`/api/asset/${assetId}/component/${componentId}`);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './AssignComponent.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { getAllAssets, assignComponentToAsset } from '../../api/assetApi';
+import { getAllComponents } from '../../api/componentApi';
 import { handleApiError } from '../../utils/helpers';
 
 const AssignComponent = () => {
@@ -12,18 +13,21 @@ const AssignComponent = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch assets and components on component mount
   useEffect(() => {
-    axios.get('http://localhost:8080/api/asset/all')
-      .then(response => setAssets(response.data))
-      .catch(error => console.error('Error fetching assets:', error));
+    const fetchAssetsAndComponents = async () => {
+      try {
+        const assetsData = await getAllAssets();
+        const componentsData = await getAllComponents();
+        setAssets(assetsData);
+        setComponents(componentsData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-    axios.get('http://localhost:8080/api/component/all')
-      .then(response => setComponents(response.data))
-      .catch(error => console.error('Error fetching components:', error));
+    fetchAssetsAndComponents();
   }, []);
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,29 +36,18 @@ const AssignComponent = () => {
       return;
     }
 
-    console.log('Selected Asset:', selectedAsset);
-    console.log('Selected Component:', selectedComponent);
-
     try {
-      const response = await axios.post(`http://localhost:8080/api/asset/${selectedAsset}/component/${selectedComponent}`);
-      console.log('Response:', response.data);
-
+      await assignComponentToAsset(selectedAsset, selectedComponent);
       setSuccess(true);
       setSelectedAsset('');
       setSelectedComponent('');
 
-      // Refresh asset list after assignment
-      const updatedAssets = await axios.get('http://localhost:8080/api/asset/all');
-      setAssets(updatedAssets.data);
-
-      // Redirect to Dashboard after 2 seconds
       setTimeout(() => {
         navigate('/dashboard');
       }, 2000);
     } catch (error) {
       console.error('Error assigning component:', error);
-      const message = handleApiError(error);
-      alert(message);
+      alert(handleApiError(error));
     }
   };
 
@@ -77,7 +70,7 @@ const AssignComponent = () => {
           <option value="">-- Select Component --</option>
           {components.map(component => (
             <option key={component.id} value={component.id}>
-              {component.name} ({component.category}) - {component.manufacturer} | Serial: {component.serialNumber} | Warranty: {component.warranty}
+              {component.name} ({component.category}) - {component.manufacturer} | Serial: {component.serialNumber} | Warranty: {component.warrantyEnd}
             </option>
           ))}
         </select>

@@ -52,10 +52,10 @@ public class AssetController {
     }
   
     @POST
-//  @Path("/{id}/component/{componentId}") 
-    @Path("/component")
+  @Path("/{id}/component/{componentId}") 
+//    @Path("/component")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response linkComponentToAsset(@QueryParam("id") String assetId, @QueryParam("componentId") String componentId) {
+    public Response linkComponentToAsset(@PathParam("id") String assetId, @PathParam("componentId") String componentId) {
         boolean success = assetService.linkComponentToAsset(assetId, componentId);
         if (success) {
             return Response.ok("Component linked successfully").build();

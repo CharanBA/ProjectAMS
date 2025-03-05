@@ -1,16 +1,29 @@
-// import api from './index';
+import api from './index';
 
-// export const getComponents = async () => {
-//   const response = await api.get('/component');
-//   return response.data;
-// };
+export const getComponentsByAssetId = async (assetId) => {
+  try {
+    const response = await api.get(`/api/component/asset/${assetId}/components`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
-// export const addComponent = async (newComponent) => {
-//   const response = await api.post('/component', newComponent);
-//   return response.data;
-// };
+export const addComponent = async (componentData) => {
+  try {
+    await api.post('/api/component', componentData);
+  } catch (error) {
+    throw error;
+  }
+};
 
-// export const assignComponent = async (assetId, componentId) => {
-//   const response = await api.post(`/asset/${assetId}/component/${componentId}`);
-//   return response.data;
-// };
+export const getAllComponents = async () => {
+  try {
+    const response = await api.get('/api/component/all');
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+

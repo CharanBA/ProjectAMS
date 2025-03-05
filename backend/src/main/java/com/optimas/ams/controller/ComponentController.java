@@ -49,10 +49,10 @@ public class ComponentController {
     }
 
     @GET
-//  @Path("/asset/{id}/components")
-    @Path("/components")
+  @Path("/asset/{id}/components")
+//    @Path("/components")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getComponentsByAssetId(@QueryParam("id") String assetId) {
+    public Response getComponentsByAssetId(@PathParam("id") String assetId) {
     	
         List<ComponentDef> components = ComponentService.getComponentsByAssetId(assetId);
         if (!components.isEmpty()) {

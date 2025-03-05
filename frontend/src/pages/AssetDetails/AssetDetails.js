@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './AssetDetails.css';
-import axios from 'axios';
-import { handleApiError } from '../../utils/helpers';
+import { getAssetById } from '../../api/assetApi';
+import { getComponentsByAssetId } from '../../api/componentApi';
 
 const AssetDetails = () => {
   const { id } = useParams();
@@ -11,26 +11,27 @@ const AssetDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch Asset Details
-    axios.get(`http://localhost:8080/api/asset?id=${id}`)
-      .then(response => {
-        setAsset(response.data);
+    const fetchAssetDetails = async () => {
+      try {
+        const assetData = await getAssetById(id);
+        setAsset(assetData);
         setError(null);
-      })
-      .catch(error => {
-        const message = handleApiError(error);
-        setError(message);
-      });
+      } catch (error) {
+        console.error("Error fetching Assets:", error);
+      }
+    };
 
-    // Fetch Components Linked to Asset
-    axios.get(`http://localhost:8080/api/component/asset/${id}/components`)
-      .then(response => {
-        setComponents(response.data);
-      })
-      .catch(error => {
+    const fetchComponents = async () => {
+      try {
+        const componentData = await getComponentsByAssetId(id);
+        setComponents(componentData);
+      } catch (error) {
         console.error("Error fetching components:", error);
-      });
+      }
+    };
 
+    fetchAssetDetails();
+    fetchComponents();
   }, [id]);
 
   if (error) {

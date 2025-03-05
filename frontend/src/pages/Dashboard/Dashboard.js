@@ -1,40 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import './Dashboard.css';
+import { getAllAssets } from '../../api/assetApi';
+import { getComponentsByAssetId } from '../../api/componentApi';
 import { handleApiError } from '../../utils/helpers';
+import './Dashboard.css';
 
 function Dashboard() {
   const [assets, setAssets] = useState([]);
   const [expanded, setExpanded] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/asset/all')
-      .then(response => {
-        setAssets(response.data.reverse());
-      })
-      .catch(error => {
-        alert(handleApiError(error));
-      });
+    fetchAssets();
   }, []);
 
-  const fetchComponents = (assetId) => {
-    axios.get(`http://localhost:8080/api/component/asset/${assetId}/components`)
-      .then(response => {
-        setAssets(prevAssets =>
-          prevAssets.map(asset =>
-            asset.id === assetId ? { ...asset, components: response.data } : asset
-          )
-        );
-      })
-      .catch(error => {
-        alert(handleApiError(error));
-      });
+  const fetchAssets = async () => {
+    try {
+      const data = await getAllAssets();
+      setAssets(data);
+    } catch (error) {
+      alert(handleApiError(error));
+    }
+  };
+
+  const fetchComponents = async (assetId) => {
+    try {
+      const components = await getComponentsByAssetId(assetId);
+      setAssets(prevAssets =>
+        prevAssets.map(asset =>
+          asset.id === assetId ? { ...asset, components } : asset
+        )
+      );
+    } catch (error) {
+      alert(handleApiError(error));
+    }
   };
 
   const toggleExpand = (assetId) => {
     if (expanded === assetId) {
-      setExpanded(null); // Collapse if already expanded
+      setExpanded(null);
     } else {
       setExpanded(assetId);
       const asset = assets.find(a => a.id === assetId);
@@ -64,8 +67,8 @@ function Dashboard() {
         </thead>
         <tbody>
           {assets.map(asset => (
-            <>
-              <tr key={asset.id}>
+            <React.Fragment key={asset.id}>
+              <tr>
                 <td>{asset.name}</td>
                 <td>{asset.category}</td>
                 <td>{asset.description}</td>
@@ -73,10 +76,7 @@ function Dashboard() {
                 <td>{asset.status}</td>
                 <td>{asset.assignedTo}</td>
                 <td>
-                  <button 
-                    className="toggle-button" 
-                    onClick={() => toggleExpand(asset.id)}
-                  >
+                  <button className="toggle-button" onClick={() => toggleExpand(asset.id)}>
                     {expanded === asset.id ? 'Collapse' : 'Expand'}
                   </button>
                   <Link className="details-link" to={`/asset/${asset.id}`}>Details</Link>
@@ -101,7 +101,7 @@ function Dashboard() {
                   </td>
                 </tr>
               )}
-            </>
+            </React.Fragment>
           ))}
         </tbody>
       </table>

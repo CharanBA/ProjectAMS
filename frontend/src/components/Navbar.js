@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import Dashboard from '../pages/Dashboard/Dashboard';
 
 const Navbar = () => {
   return (
